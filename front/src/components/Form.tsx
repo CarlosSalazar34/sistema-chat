@@ -48,8 +48,8 @@ export const Form = () => {
     }
 
     return (
-        <form onSubmit={loginUser} className="flex flex-col justify-center items-center border border-gray-300 rounded-lg p-8 shadow-lg min-w-7/12">
-            <div className="flex flex-col gap-2 mb-2 min-w-full items-center">
+        <form onSubmit={loginUser} className="flex flex-col justify-center items-center border border-gray-300 rounded-lg p-6 md:p-8 shadow-lg w-full max-w-md bg-white">
+            <div className="flex flex-col gap-2 mb-4 w-full items-center">
                 <label htmlFor="username">Nombre de usuario</label>
                 <input placeholder="usuario123" className="w-full border-b border-gray-300 outline-none transition-all focus:border-blue-700" type="text" id="username" value={username} onChange={(event) => {
                     setUsername(event.target.value);

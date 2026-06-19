@@ -46,8 +46,8 @@ export const FormRegister = () => {
     }
 
     return (
-        <form onSubmit={register} className="flex flex-col justify-center items-center border border-gray-300 rounded-lg p-8 shadow-lg min-w-7/12">
-            <div className="flex flex-col gap-2 mb-4 min-w-full items-center">
+        <form onSubmit={register} className="flex flex-col justify-center items-center border border-gray-300 rounded-lg p-6 md:p-8 shadow-lg w-full max-w-md bg-white">
+            <div className="flex flex-col gap-2 mb-4 w-full items-center">
                 <label htmlFor="name">Nombre completo</label>
                 <input placeholder="Juan Pérez" className="w-full border-b border-gray-300 outline-none transition-all focus:border-blue-700" type="text" id="name" value={name} onChange={(event) => {
                     setName(event.target.value);
