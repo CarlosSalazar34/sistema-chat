@@ -40,6 +40,6 @@ async def perfil(current_user: str = Depends(get_current_user)):
         "username": current_user
     }
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app="app:app", reload=True, port=8000)
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run(app="app:app", reload=True, port=8000)
