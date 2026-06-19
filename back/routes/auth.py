@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from fastapi import APIRouter, Depends, status
 from fastapi.security import OAuth2PasswordRequestForm
-from passlib.context import CryptContext
+import bcrypt
 from security.auth_security import get_token, verify_token
 from sqlalchemy.orm import Session
 from core.database import engine
@@ -9,7 +9,6 @@ from models.users import User
 from schemas.user import UserRegister, UserResponse
 
 auth = APIRouter(tags=["oauth-endpoints"])
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 @auth.post("/login")
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
@@ -21,7 +20,7 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
                 detail="Invalid credentials",
                 headers={"WWW-Authenticate": "Bearer"},
             )
-        is_password_valid = pwd_context.verify(form_data.password, user.hashed_password)
+        is_password_valid = bcrypt.checkpw(form_data.password.encode('utf-8'), user.hashed_password.encode('utf-8'))
         if not is_password_valid: 
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
@@ -48,7 +47,7 @@ async def register(user_data: UserRegister):
             )
         
         # Encriptar contraseña y crear usuario
-        hashed_password = pwd_context.hash(user_data.password)
+        hashed_password = bcrypt.hashpw(user_data.password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
         new_user = User(
             name=user_data.name,
             username=user_data.username,
