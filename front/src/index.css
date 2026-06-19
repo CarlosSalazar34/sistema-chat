@@ -1,1 +1,53 @@
 @import "tailwindcss";
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  /* Fondo animado moderno */
+  background: linear-gradient(-45deg, #f3f4f6, #e5e7eb, #d1d5db, #f3f4f6);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes slideLeftToRight {
+    0% { transform: translateX(2%); opacity: 0; filter: blur(20px); }
+    100% { transform: translateX(0%); opacity: 1; filter: blur(0); }
+}
+
+.menu {
+    animation: slideLeftToRight 500ms ease-in-out;
+}
+
+@keyframes slideRightToLeft {
+    0% { transform: translateX(-10px); opacity: 0; }
+    100% { transform: translateX(0%); opacity: 1; }
+}
+
+.section {
+    animation: slideRightToLeft 500ms ease-in-out;
+}
+
+/* Ocultar barra de scroll para un look más limpio */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
